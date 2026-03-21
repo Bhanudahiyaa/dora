@@ -1,6 +1,6 @@
 use crate::{
     ArchivedDataflow, BuildFinishedResult, CachedResult, DaemonRequest, Event, dataflow_result,
-    send_log_message, state, tcp_utils::tcp_receive,
+    handle_daemon_disconnect, send_log_message, state, tcp_utils::tcp_receive,
 };
 use dora_core::uhlc::HLC;
 use dora_message::{
@@ -286,6 +286,7 @@ impl CoordinatorNotify for CoordinatorNotifyServer {
         self.coordinator_state
             .daemon_connections
             .remove(&self.daemon_id);
+        handle_daemon_disconnect(&self.coordinator_state, &self.daemon_id);
     }
 
     async fn node_metrics(
