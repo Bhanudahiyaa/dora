@@ -68,14 +68,15 @@
           ]
         },
         "envs": {
-          "description": "Environment variables for the custom nodes\n\nDeprecated, use outer-level `env` field instead.",
+          "description": "Environment variables for the custom nodes.",
           "type": [
             "object",
             "null"
           ],
           "additionalProperties": {
             "$ref": "#/$defs/EnvValue"
-          }
+          },
+          "deprecated": true
         },
         "health_check_timeout": {
           "description": "Health check timeout in seconds.\n\nWhen set, the daemon monitors this node for activity. If the node does not\ncommunicate with the daemon within this timeout, it is killed and the restart\npolicy is evaluated.",
